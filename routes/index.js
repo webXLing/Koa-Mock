@@ -14,7 +14,7 @@ router.get('/', async (ctx, next) => {
 router.get('/string', async (ctx, next) => {
   ctx.body = await Mock.mock({
     status: "success",
-    self: {
+    'self': {
       money: 0,
       nick_name: 'nick_name',
       user_id: 1,
@@ -38,7 +38,7 @@ router.get('/json', async (ctx, next) => {
 
 var MockRandom = Mock.Random;
 // var pageCount = MockRandom.integer(1, 10);
-var pageCount = 55;
+var pageCount = 3;
 
 var haseMore = true;//是否结束分页
 var ids = 10000;//自增长id
@@ -54,7 +54,7 @@ router.get('/index', function (ctx, next) {
   if (currPage === pageCount) {
     haseMore = false;
     bookListTemplate = {
-      'list|1-19': [//最后一页的数据在1-10的区间产生
+      'list|1-10': [//最后一页的数据在1-10的区间产生
         {
           'user_id|+1': ids,
           'nick_name': '@ctitle(5, 15)',
@@ -62,7 +62,7 @@ router.get('/index', function (ctx, next) {
           'card_num': 32
         }
       ],
-      self: {
+      'self': {
         money: 0,
         nick_name: 'nick_name',
         user_id: 1,
@@ -79,7 +79,7 @@ router.get('/index', function (ctx, next) {
           'card_num': 32
         }
       ],
-      self: {
+      'self': {
         money: 0,
         nick_name: 'nick_name',
         user_id: 1,
