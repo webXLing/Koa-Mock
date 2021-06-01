@@ -6,9 +6,21 @@ let Random = Mock.Random; //引入mock随机属性的函数
 router.prefix('/index')
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
+  await new Promise((resolve) => {
+    setTimeout(async () => {
+      resolve()
+      console.log(1)
+    }, 1000 * 20);
   })
+  // await ctx.render('index', {
+  //   title: 'Hello Koa 2!'
+  // })
+  ctx.body = {
+    status: "success",
+    data: {},
+  }
+
+
 })
 
 router.get('/string', async (ctx, next) => {
