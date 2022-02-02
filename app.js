@@ -9,13 +9,15 @@ const cors = require('koa2-cors') //允许跨域
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const project = require('./routes/projecy')
+
 
 // error handler
 onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes: ['json', 'form', 'text']
+    enableTypes: ['json', 'form', 'text']
 }))
 app.use(cors()) //允许跨域
 app.use(json())
@@ -23,7 +25,7 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'ejs'
+    extension: 'ejs'
 }))
 
 // app.use(async (ctx, next) => {
@@ -37,21 +39,23 @@ app.use(views(__dirname + '/views', {
 
 // logger
 app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
+    const start = new Date()
+    await next()
+    const ms = new Date() - start
 })
 
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(project.routes(), project.allowedMethods())
+
 
 app.listen(3001, () => {
-  console.log("localhost:3001");
+    console.log("localhost:3001");
 })
 // error-handling
 app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+    console.error('server error', err, ctx)
 });
 
 module.exports = app
