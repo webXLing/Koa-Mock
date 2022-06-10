@@ -2853,8 +2853,10 @@ router.get('/ningbo-project/newcafe/rest/revolution/v1/workingHours/list', funct
 
                     prefixCode: "AM",
                     sequence: 111769,
-                    statusId: 1106,
-                    statusName: "待开发",
+                    statusId: 1117,
+                    statusName: "开发中",
+                    // statusId: 1106,
+                    // statusName: "待开发",
                     time: "2022-04-21 00:00:00",
                     title: '@ctitle(8, 14)',
                     todayWorkingHours: null,
@@ -2902,19 +2904,19 @@ router.get('/ningbo-project/newcafe/rest/revolution/v1/workingHours/getDate', fu
                 usedHours: 0,
             },
             {
-                date: "2022-04-22",
+                date: "2022-06-01",
                 dayOfWeek: "周五",
                 remainHours: 24,
                 usedHours: 0,
             },
             {
-                date: "2022-04-23",
+                date: "2022-06-02",
                 dayOfWeek: "周六",
                 remainHours: 24,
                 usedHours: 0,
             },
             {
-                date: "2022-04-24",
+                date: "2022-06-03",
                 dayOfWeek: "周日",
                 remainHours: 24,
                 usedHours: 0,
@@ -3113,4 +3115,257 @@ router.get('/ningbo-project/newcafe/rest/revolution/v1/workingHours/flow/group',
     var mockData = Mock.mock(getArrFn());
     ctx.body = mockData
 })
+
+
+// 周汇
+router.post('/ningbo-project/newcafe/rest/revolution/v1/workingHours/weekInfo', function (ctx, next) {
+
+    function getArrFn () {
+        const result = []
+        const count = Math.floor(Math.random() * 100)
+        for (let index = 0; index < count; index++) {
+            let key = 'k' + Math.floor(Math.random() * 48234)
+            result.push({
+                "groupName": '@ctitle(5, 15)',
+                "groupNo": '@id()',
+                'details|1-30': [
+                    {
+                        userName: '@ctitle(2, 3)',
+                        userNo: 'k12312',
+                        id: '@id()',
+                        user: {
+                            "chineseName": '@ctitle(3, 5)',
+                            'userName': 'k631312',
+                            'mandarin': 'j',
+                        },
+                        monday: {
+                            date: '2022-05-01 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        tuesday: {
+                            date: '2022-05-02 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        wednesday: {
+                            date: '2022-05-03 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        thursday: {
+                            date: '2022-05-04 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        friday: {
+                            date: '2022-05-05 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        saturday: {
+                            date: '2022-05-06 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                        sunday: {
+                            date: '2022-05-07 00:00:00',
+                            hours: 7.1,
+                            isExceed: true,
+                            isOmission: false //
+                        },
+                    }
+                ]
+            })
+
+        }
+
+        return result
+    }
+    var mockData = Mock.mock({
+        'list|5-10': [
+            {
+                "groupName": '@ctitle(5, 15)',
+                "groupNo": '@id()',
+                'details|1-5': [
+                    {
+                        userName: '@ctitle(2, 3)',
+                        userNo: 'k12312',
+                        id: '@id()',
+                        user: {
+                            "chineseName": '@ctitle(3, 5)',
+                            'userName': 'k631312',
+                            'mandarin': 'j',
+                        },
+                        weekList: [
+                            {
+                                date: '2022-05-01 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-02 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-03 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-04 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-05 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-06 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                            {
+                                date: '2022-05-07 00:00:00',
+                                hours: 7.1,
+                                isExceed: true,
+                                isOmission: false //
+                            },
+                        ]
+                    }
+                ]
+            }
+        ],
+        dates: [
+            "2022-05-01",
+            "2022-05-02",
+            "2022-05-03",
+            "2022-05-04",
+            "2022-05-05",
+            "2022-05-06",
+            "2022-05-07",
+        ]
+    });
+    ctx.body = mockData
+})
+
+
+
+// **项目计划 面包屑**
+router.get('/ningbo-project/newcafe/rest/revolution/v1/projectPlan/getNodePath', function (ctx, next) {
+
+    var mockData = Mock.mock(
+        {
+            'nodePath|3-4': [
+                {
+                    "title": '@ctitle(2, 6)',
+                    "id": '@id()',
+                    "parentId": '@id()',
+                }
+            ]
+        }
+    );
+    ctx.body = mockData
+})
+
+
+// **项目计划 前置任务详情 **
+router.get('/ningbo-project/newcafe/rest/revolution/v1/projectPlan/getPreNode', function (ctx, next) {
+
+    var mockData = Mock.mock(
+        {
+            'list': [
+                {
+                    "title": '@ctitle(2, 6)',
+                    "planNodeType": 2,
+                    "planNodeStatus": 1,// 0 未开始 1进行中 2已完成 3已暂停 4已终止
+                    // "id": '@id()',
+                    // "parentId": '@id()',
+                    createTime: "2021/05/12 21:49:21",
+                    creator: { chineseName: '@ctitle(2, 6)', userName: 'k631312', mandarin: 'j' },
+                    expectedDeliTime: "2021/05/12 21:49:21",
+                    id: '1', // 树的id
+                    spaceIssueStatus: {
+                        issueStatus: {
+                            name: '已关闭'
+                        }
+                    },
+                    title: '@ctitle(6, 10)',
+                    issueType: { name: '一般事务' },
+                    // 树
+                }
+            ]
+        }
+    );
+    ctx.body = mockData
+})
+
+// **项目计划 前置任务树 **
+router.get('/ningbo-project/newcafe/rest/revolution/v1/projectPlan/getProPlanPreNodeTree/2699/', function (ctx, next) {
+
+    var mockData = Mock.mock(
+        {
+            'proPlanStageList': [
+                {
+                    "title": '@ctitle(2, 6)',
+                    "planNodeType": 3,
+                    "planNodeStatus": 1,// 0 未开始 1进行中 2已完成 3已暂停 4已终止
+                    // "id": '@id()',
+                    // "parentId": '@id()',
+                    createTime: "2021/05/12 21:49:21",
+                    creator: { chineseName: '@ctitle(2, 6)', userName: 'k631312', mandarin: 'j' },
+                    expectedDeliTime: "2021/05/12 21:49:21",
+                    id: '1', // 树的id
+                    spaceIssueStatus: {
+                        issueStatus: {
+                            name: '已关闭'
+                        }
+                    },
+                    title: '@ctitle(6, 10)',
+                    issueType: { name: '一般事务' },
+                    'children|20': [
+                        {
+                            "title": '@ctitle(2, 6)',
+                            "planNodeType": 3,
+                            "planNodeStatus": 1,// 0 未开始 1进行中 2已完成 3已暂停 4已终止
+                            // "id": '@id()',
+                            // "parentId": '@id()',
+                            createTime: "2021/05/12 21:49:21",
+                            creator: { chineseName: '@ctitle(2, 6)', userName: 'k631312', mandarin: 'j' },
+                            expectedDeliTime: "2021/05/12 21:49:21",
+                            id: '@id()', // 树的id
+                            spaceIssueStatus: {
+                                issueStatus: {
+                                    name: '已关闭'
+                                }
+                            },
+                            title: '@ctitle(6, 10)',
+                            issueType: { name: '一般事务' },
+                            children: []
+                            // 树
+                        }
+                    ]
+                    // 树
+                }
+            ]
+        }
+    );
+    ctx.body = mockData
+})
+
 module.exports = router
